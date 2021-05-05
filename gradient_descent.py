@@ -8,7 +8,7 @@ def gradient_descent(objective, gradient, iterationNumber, callback, epsilon=0.0
 
     for i in range(iterationNumber):
         x = x - gradient(x) * ls.find_step_length(objective, gradient, x, 1, -gradient(x), 0.9)
-        callback(objective(x), i)
+        callback(objective(x), x, i)
         if np.linalg.norm(gradient(x)) < epsilon:
             break
     return x

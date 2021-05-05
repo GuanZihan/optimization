@@ -1,5 +1,5 @@
 import numpy as np
-
+import numpy.linalg as linalg
 
 def computeDerivatives(mode, f, x):
     if mode == "forward":
@@ -8,6 +8,8 @@ def computeDerivatives(mode, f, x):
         return backwardComputing()
     if mode == "numerical":
         return numericalComputing(f, x, epsilon=0.01)
+    if mode == "numerical_hessian":
+        return numericalComputingHessian(f, x, epsilon=0.01)
     return
 
 
@@ -36,3 +38,17 @@ def numericalComputing(f, x, epsilon):
         add[dim] = epsilon
         ret.append(np.divide(f(x + add) - f(x - add), 2 * epsilon))
     return np.array(ret)
+
+
+def numericalComputingHessian(f, x, epsilon):
+    dims = len(x)
+    ret = []
+
+    for dim in range(dims):
+        add = np.zeros(dims)
+        add[dim] = epsilon
+        first_order = numericalComputing(f, x - add, epsilon)
+        first_order_add = numericalComputing(f, x + add, epsilon)
+        ret.append(np.divide((first_order - first_order_add), -2 * epsilon))
+
+    return np.array(ret).transpose()
