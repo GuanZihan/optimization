@@ -2,7 +2,7 @@ import numpy as np
 import line_search as ls
 
 
-def gradient_descent(objective, gradient, iterationNumber, callback, epsilon=0.1, dimension=2):
+def gradient_descent(objective, gradient, iterationNumber, callback, epsilon=0.01, dimension=2):
     assert iterationNumber > 0, dimension > 0
     x = np.zeros(dimension)
 

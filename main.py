@@ -1,5 +1,6 @@
 import numpy as np
 import gradient_descent as gd
+import derivatives
 
 
 def rosenbrock(x, a=1, b=100):
@@ -10,20 +11,15 @@ def rosenbrock(x, a=1, b=100):
     :param b: parameter b
     :return: the value of rosenbrock function
     """
-    return pow(a - x[0], 2) + b * pow(x[1] - pow(x[0], 2), 2)
-
-
-def df_dx1(x): return 400 * pow(x[0], 3) - 400 * x[0] * x[1] + 2 * x[0] - 2
-
-
-def df_dx2(x): return 200 * x[1] - 200 * pow(x[0], 2)
-
-
-def fd(x): return np.array([df_dx1(x), df_dx2(x)])
+    return np.power(a - x[0], 2) + b * np.power(x[1] - np.power(x[0], 2), 2)
 
 
 def callback(objectiveValue, iterationNumber):
     print("Value " + str(objectiveValue) + " iteration " + str(iterationNumber))
+
+
+def fd(x):
+    return derivatives.computeDerivatives("numerical", rosenbrock, x)
 
 
 if __name__ == "__main__":
