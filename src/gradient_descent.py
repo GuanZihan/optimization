@@ -4,8 +4,7 @@ import line_search as ls
 
 def gradient_descent(objective, gradient, iterationNumber, callback, epsilon=0.01, dimension=2):
     assert iterationNumber > 0, dimension > 0
-    x = np.zeros(dimension)
-
+    x = np.zeros(dimension) - 2
     for i in range(iterationNumber):
         x = x - gradient(x) * ls.find_step_length(objective, gradient, x, 1, -gradient(x), 0.9)
         callback(objective(x), x, i)
