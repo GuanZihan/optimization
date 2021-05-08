@@ -79,7 +79,7 @@ def fd(x): return np.array([ df_dx1(x), df_dx2(x) ])
 
 if __name__ == "__main__":
     ax = plot_figure(rosenbrock, [-4, 4], [-4, 4])
-    gd.gradient_descent(rosenbrock, gradient, 1000, callback)
-    nt.newton_method(rosenbrock, gradient, hessian, 1000, callback)
-    # tr.trust_region(rosenbrock, gradient, hessian, 100, callback)
+    # gd.gradient_descent(rosenbrock, gradient, 1000, callback)
+    # nt.newton_method(rosenbrock, gradient, hessian, 1000, callback)
+    tr.trust_region(rosenbrock, gradient, hessian, 100, 0.06, callback)
     plt.show()
