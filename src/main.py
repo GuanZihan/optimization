@@ -73,9 +73,7 @@ def plot_figure(function, XRange, YRange):
     Z = np.array(Z_)
     ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="rainbow", alpha=0.7)
     return ax
-def df_dx1(x): return 400*np.math.pow(x[0], 3) - 400*x[0]*x[1] + 2*x[0] - 2
-def df_dx2(x): return 200*x[1] - 200*np.math.pow(x[0], 2)
-def fd(x): return np.array([ df_dx1(x), df_dx2(x) ])
+
 
 if __name__ == "__main__":
     ax = plot_figure(rosenbrock, [-4, 4], [-4, 4])
